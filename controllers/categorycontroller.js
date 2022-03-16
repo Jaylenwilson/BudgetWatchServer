@@ -13,6 +13,7 @@ router.get('/categoryview/:userId', validateJWT, async (req, res) => {
                 userId: userId
             },
 
+
             include: [
                 {
                     model: models.ExpenseModel
