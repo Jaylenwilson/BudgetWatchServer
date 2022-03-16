@@ -3,12 +3,12 @@ const { models } = require('../models');
 let validateJWT = require('../middleware/validate-session');
 
 // fetch to load all categories of a user automatically loads on the page 
-router.get('/tranactionview/:userId', validateJWT, async (req, res) => {
-    const { userId } = req.params.id
+router.get('/categoryview/:userId', validateJWT, async (req, res) => {
+    const userId = req.params.userId
 
 
     try {
-        const result = await models.CategoryModel.findAll({
+        await models.CategoryModel.findAll({
             where: {
                 userId: userId
             },
@@ -22,7 +22,7 @@ router.get('/tranactionview/:userId', validateJWT, async (req, res) => {
             .then(
                 category => {
                     res.status(200).json({
-                        message: `categories recieved ${result}`,
+                        message: `categories recieved `,
                         category: category
                     })
                 }
@@ -47,7 +47,13 @@ router.post('/category', validateJWT, async (req, res) => {
 
     try {
         await models.CategoryModel.create({
-            category: category
+            category: category,
+            userId: req.user.id,
+            include: [
+                {
+                    model: models.ExpenseModel
+                }
+            ]
         })
             .then(
                 category => {

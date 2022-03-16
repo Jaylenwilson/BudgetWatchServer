@@ -4,6 +4,7 @@ const TransactionModel = require('./transaction');
 const ExpenseModel = require('./expense');
 const UserModel = require('./user');
 const CategoryModel = require('./category');
+const Category = require('./category');
 
 TransactionModel.hasMany(ExpenseModel);
 ExpenseModel.belongsTo(TransactionModel);
@@ -13,6 +14,10 @@ ExpenseModel.belongsTo(CategoryModel);
 
 TransactionModel.belongsTo(UserModel);
 UserModel.hasOne(TransactionModel);
+
+CategoryModel.belongsTo(UserModel);
+UserModel.hasMany(CategoryModel);
+
 
 module.exports = {
     dbconnection: db,
