@@ -1,4 +1,4 @@
-const { DataTypes, STRING, NUMBER, INTEGER } = require("sequelize")
+const { DataTypes, STRING, NUMBER, INTEGER, FLOAT } = require("sequelize")
 const db = require("../db")
 const Expense = db.define("expense", {
     id: {
@@ -14,7 +14,7 @@ const Expense = db.define("expense", {
     },
 
     cost: {
-        type: INTEGER,
+        type: FLOAT,
         allowNull: false
     }
 })

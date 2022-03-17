@@ -1,5 +1,6 @@
 const { DataTypes, INTEGER, UUID, NUMBER, DATE } = require('sequelize')
 const db = require('../db')
+let moment = require('moment')
 
 const Transaction = db.define("transaction", {
     id: {
@@ -27,7 +28,9 @@ const Transaction = db.define("transaction", {
     transactionDate: {
         type: DATE,
         allowNull: false
-    }
+    },
+
+
 
 
 

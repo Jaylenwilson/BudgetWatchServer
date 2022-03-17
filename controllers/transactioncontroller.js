@@ -1,10 +1,14 @@
 const router = require('express').Router();
 const { models } = require('../models');
 let validateJWT = require('../middleware/validate-session');
+let moment = require('moment')
 
 router.post('profilecreate', validateJWT, async (req, res) => {
-    const { transactionAmount, monthlysavings, yearlysavings } = req.body.transaction
+    const { transactionAmount, monthlysavings, yearlysavings, transactionDate } = req.body.transaction
 
+
+
+    console.log(transactionDate)
     const result = await models.TransactionModel.create({
         transactionAmount: transactionAmount,
         monthlysavings: monthlysavings,
@@ -19,6 +23,8 @@ router.post('profilecreate', validateJWT, async (req, res) => {
                 })
             }
         )
+
+
 })
 
 
