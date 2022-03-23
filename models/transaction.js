@@ -26,9 +26,14 @@ const Transaction = db.define("transaction", {
     },
 
     transactionDate: {
-        type: DATE,
-        allowNull: false
-    },
+        type: DataTypes.DATE,
+        moment: moment().format("MMM Do YY")
+    }
+
+    // Date: {
+    //     type: DATE,
+    //     allowNull: false
+    // },
 
 
 
